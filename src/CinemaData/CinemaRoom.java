@@ -1,38 +1,50 @@
-import java.util.HashMap;
+package CinemaData;
+
+import Company.Cinema;
+
+import java.util.ArrayList;
 
 public class CinemaRoom {
 
-    private String cinemaRoomName;
+   /* // console only for printing
     private String ansiGreen = "\033[0;32m";
     private String ansiYellow = "\033[33m";
     private String ansiRed = "\033[31m";
     private String ansiRest = "\u001B[0m";
+
+    // add to code, it is not a column in db!
     private int seatIsNotReserved = 0;
     private int seatIsReserved = 1;
     private int seatIsTemporarilyReserved = 2;
+
+    //column name! - remove
     private HashMap<String, Object> seatDetails;
     private HashMap<String, Object> seatNumber;
     private HashMap<String, Object> rowSeatsData;
 
-    private Cinema cinema;
 
-    CinemaRoom(Cinema cinema, String cinemaRoomName) {
+    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    private Company.Company.Cinema cinema;
+    private String cinemaRoomName;
+    private List<Cinema.Seat>();
+
+    Cinema.CinemaRoom(Company.Company.Cinema cinema, String cinemaRoomName) {
         this.rowSeatsData = new HashMap<>();
         this.cinemaRoomName = cinemaRoomName;
         this.cinema = cinema;
     }
 
-    protected Cinema getCinema() {
+    protected Company.Company.Cinema getCinema() {
         return this.cinema;
     }
 
-    protected HashMap<String, Object> getRowSeatsData(String rowNumber) {
+    protected HashMap<String, Object>getRowSeatsData(String rowNumber) {
         return (HashMap) this.rowSeatsData.get(rowNumber);
     }
 
-    /*protected void setRoomName(String cinemaRoomName){
+    protected void setRoomName(String cinemaRoomName){
         this.cinemaRoomName = cinemaRoomName;
-    }*/
+    }
 
     protected String getRoomName() {
         return this.cinemaRoomName;
@@ -94,5 +106,34 @@ public class CinemaRoom {
             }
             System.out.println();
         }
+    }*/
+
+
+    private String cinemaRoomName;
+    private Cinema cinema;
+    private ArrayList<Seat> seats = new ArrayList<>();
+
+    public CinemaRoom(Cinema cinema, String cinemaRoomName) {
+        this.cinemaRoomName = cinemaRoomName;
+        this.cinema = cinema;
     }
+
+    protected String getCinemaRoomName() {
+        return this.cinemaRoomName;
+    }
+
+    public Cinema getCinema() {
+        return this.cinema;
+    }
+    public void addSeat(Seat seat) {
+        this.seats.add(seat);
+    }
+
+    protected ArrayList<Seat> getRoomSeats() {
+        return this.seats;
+    }
+
+
+
+
 }

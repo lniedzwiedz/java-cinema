@@ -1,10 +1,10 @@
-import java.util.HashMap;
+package CompanyData;
 
 public class Movie {
 
-    private HashMap<String, String> movieDetails;
+    /*private HashMap<String, String> movieDetails;
 
-    Movie(String movieTitle) {
+    Company.Movie(String movieTitle) {
         this.movieDetails = new HashMap<>();
         this.movieDetails.put("movieTitle", movieTitle);
     }
@@ -46,5 +46,41 @@ public class Movie {
         System.out.println("  " + this.movieDetails.get("movieTitle"));
         System.out.println("  " + this.movieDetails.get("movieKind") + ", "
                 + this.movieDetails.get("movieLanguage"));
+    }*/
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    private String title;
+    private String kind;
+    private String genre;
+    private String duration;
+    private String language;
+
+    public Movie(String title, String kind, String genre, String duration, String language) {
+        this.title = title;
+        this.kind = kind;
+        this.genre = genre;
+        this.duration = duration;
+        this.language = language;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    protected String getKind() {
+        return this.kind;
+    }
+
+    protected String getGenre() {
+        return this.genre;
+    }
+
+    protected String getDuration() {
+        return this.duration;
+    }
+
+    protected String getLanguage() {
+        return this.language;
     }
 }

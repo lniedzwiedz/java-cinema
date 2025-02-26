@@ -1,18 +1,22 @@
+package CinemaData;
+
+import Company.Movie;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
+import java.util.*;
 
 public class MovieScreenig {
 
-    private HashMap<String, Object> screenigData;
-    private Movie movieData;
+    /*private HashMap<String, Object> screenigData;
+    private Company.Movie movieData;
     private LocalDate date;
     private LocalTime time;
-    private CinemaRoom cinemaRoom;
+    private Cinema.CinemaRoom cinemaRoom;
     private HashMap<String, String> cinemaData;
 
 
-    MovieScreenig(Movie movieData, String date, String time, CinemaRoom cinemaRoom) {
+    Cinema.MovieScreenig(Company.Movie movieData, String date, String time, Cinema.CinemaRoom cinemaRoom) {
         this.movieData = movieData;
         this.date = LocalDate.parse(date);
         this.time = LocalTime.parse(time);
@@ -30,7 +34,7 @@ public class MovieScreenig {
         return this.screenigData;
     }
 
-    protected Movie getMovieData() {
+    protected Company.Movie getMovieData() {
         return this.movieData;
     }
 
@@ -42,7 +46,7 @@ public class MovieScreenig {
         return this.time;
     }
 
-    protected CinemaRoom getCinemaRoom() {
+    protected Cinema.CinemaRoom getCinemaRoom() {
         return this.cinemaRoom;
     }
 
@@ -59,5 +63,49 @@ public class MovieScreenig {
         printDateAndHourMovieScreening();
         cinemaRoom.printCinemaRoomData();
         System.out.println("------------------------------------------------------");
+    }*/
+
+
+    private Movie movieData;
+    private LocalDate date;
+    private LocalTime time;
+    private ArrayList<SeatMovieScreening> movieSeats = new ArrayList<>();
+
+    public MovieScreenig(Movie movieData, String date, String time) {
+        this.movieData = movieData;
+        this.date = LocalDate.parse(date);
+        this.time = LocalTime.parse(time);
     }
+
+    public void addSeat(SeatMovieScreening seatMovieScreening) {
+        this.movieSeats.add(seatMovieScreening);
+    }
+
+    public Movie getMovieData() {
+        return this.movieData;
+    }
+
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public LocalTime getTime() {
+        return this.time;
+    }
+
+    public SeatMovieScreening getSeatMovieScreening() {
+        return this.movieSeats.get(0);
+    }
+
+
+    protected void printMovieScreeningData() {
+        System.out.println(" ");
+        System.out.println("------------------------------------------------------");
+        // this.movieData.printMovieData();
+        //printDateAndHourMovieScreening();
+        ///cinemaRoom.printCinemaRoomData();
+        System.out.println("------------------------------------------------------");
+    }
+
+
 }

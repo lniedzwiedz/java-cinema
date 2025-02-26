@@ -1,9 +1,9 @@
-import java.util.HashMap;
+package Documents;
 
 public class PurchaseDocument {
 
-    //private String purchaseDocumentNumber;
-    private Reservation reservation;
+   /* //private String purchaseDocumentNumber;
+    private Documents.Reservation reservation;
     private int paymentStatus;
     private int reservationNotPaid = 0;
     private int reservationPaid = 1;
@@ -13,13 +13,13 @@ public class PurchaseDocument {
     private int seatIsReserved;
     private int seatIsTemporarilyReserved;
 
-    PurchaseDocument(Reservation reservation) {
+    Documents.PurchaseDocument(Documents.Reservation reservation) {
         this.paymentStatus = reservationNotPaid;
         this.reservation = reservation;
         this.finalReservationSeatsDetails = reservation.getReservationSeatsDetails();
     }
 
-    protected Client getClient() {
+    protected Company.Client getClient() {
         return this.reservation.getClient();
     }
 
@@ -75,14 +75,14 @@ public class PurchaseDocument {
         this.seatIsNotReserved = reservation.getMovieScreenig().getCinemaRoom().getStatusSeatIsNotReserved();
         changeSeatsStatus(seatIsReserved, seatIsNotReserved);
         this.paymentStatus = refundReservationPayment;
-        System.out.println("Reservation was cancel.");
+        System.out.println("Documents.Reservation was cancel.");
     }
 
     protected void printReservationDetails() {
         System.out.println("------------------------------------------------------");
         System.out.println("   PURCHASE DOCUMENT DETAILS   ");
         System.out.println();
-        System.out.println("Cinema: " + reservation.getMovieScreenig().getCinemaRoom().getCinema().getCinemaName());
+        System.out.println("Company.Company.Cinema: " + reservation.getMovieScreenig().getCinemaRoom().getCinema().getCinemaName());
         System.out.println("Address: " + reservation.getMovieScreenig().getCinemaRoom().getCinema().gerCinemaAddress());
         System.out.println();
         System.out.println("movie title: " + reservation.getMovieScreenig().getMovieData().getMovieTitle());
@@ -111,5 +111,5 @@ public class PurchaseDocument {
 
         System.out.println("------------------------------------------------------");
         System.out.println();
-    }
+    }*/
 }
