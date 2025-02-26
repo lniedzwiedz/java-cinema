@@ -1,4 +1,4 @@
-package Company;
+package CompanyData;
 
 import CinemaData.CinemaRoom;
 

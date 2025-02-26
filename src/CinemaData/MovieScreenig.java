@@ -1,6 +1,6 @@
 package CinemaData;
 
-import Company.Movie;
+import CompanyData.Movie;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

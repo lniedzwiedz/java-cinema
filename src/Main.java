@@ -2,9 +2,9 @@ import CinemaData.CinemaRoom;
 import CinemaData.MovieScreenig;
 import CinemaData.Seat;
 import CinemaData.SeatMovieScreening;
-import Company.Cinema;
-import Company.Client;
-import Company.Movie;
+import CompanyData.Cinema;
+import CompanyData.Client;
+import CompanyData.Movie;
 import Documents.Reservation;
 
 public class Main {

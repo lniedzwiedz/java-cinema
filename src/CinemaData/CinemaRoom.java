@@ -1,6 +1,6 @@
 package CinemaData;
 
-import Company.Cinema;
+import CompanyData.Cinema;
 
 import java.util.ArrayList;
 
