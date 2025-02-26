@@ -1,32 +1,36 @@
-import java.util.HashMap;
+package Documents;
+
+import CinemaData.MovieScreenig;
+import CinemaData.SeatMovieScreening;
+import Company.Client;
+
+import java.util.ArrayList;
 
 public class Reservation {
 
-
-    //private String reservationNumber;
-    private MovieScreenig movieScreenig;
-    private Client client;
+    /*//private String reservationNumber;
+    private Cinema.MovieScreenig movieScreenig;
+    private Company.Client client;
     private double valueToPay;
     private HashMap<String, Object> reservationSeatsDetails;
     private HashMap<String, String[]> chossenSeatsPerRow;
 
-    Reservation(MovieScreenig movieScreenig) {
+    Documents.Reservation(Cinema.MovieScreenig movieScreenig) {
         this.reservationSeatsDetails = new HashMap<>();
         this.chossenSeatsPerRow = new HashMap<>();
         this.movieScreenig = movieScreenig;
-        System.out.println("test brach git");
     }
 
     protected void setClient(String clientEmail) {
-        this.client = new Client(clientEmail);
+        this.client = new Company.Client(clientEmail);
         this.client.setClientName(" --- ");
     }
 
-    protected void setClient(Client client) {
+    protected void setClient(Company.Client client) {
         this.client = client;
     }
 
-    protected Client getClient() {
+    protected Company.Client getClient() {
         return this.client;
     }
 
@@ -34,7 +38,7 @@ public class Reservation {
         return this.valueToPay;
     }
 
-    protected MovieScreenig getMovieScreenig() {
+    protected Cinema.MovieScreenig getMovieScreenig() {
         return this.movieScreenig;
     }
 
@@ -71,7 +75,7 @@ public class Reservation {
                             reservationSeatDetailsPerRow.put(key1, temp);
                             this.reservationSeatsDetails.put(rowNumber, reservationSeatDetailsPerRow);
                         } else {
-                            System.out.println("Seat " + key1 + " in row " + rowNumber + " is reserved.");
+                            System.out.println("Cinema.Seat " + key1 + " in row " + rowNumber + " is reserved.");
                         }
                     }
                 }
@@ -83,7 +87,7 @@ public class Reservation {
         System.out.println("------------------------------------------------------");
         System.out.println("   RESERVATION DETAILS   ");
         System.out.println();
-        System.out.println("Cinema: " + movieScreenig.getCinemaRoom().getCinema().getCinemaName());
+        System.out.println("Company.Company.Cinema: " + movieScreenig.getCinemaRoom().getCinema().getCinemaName());
         System.out.println("Address: " + movieScreenig.getCinemaRoom().getCinema().gerCinemaAddress());
         System.out.println();
         System.out.println("movie title: " + movieScreenig.getMovieData().getMovieTitle());
@@ -112,6 +116,79 @@ public class Reservation {
 
         System.out.println("------------------------------------------------------");
         System.out.println();
+    }*/
+
+    //private String reservationNumber;
+    private MovieScreenig movieScreenig;
+    private Client client;
+    private double valueToPay;
+    private double reservationStatus;
+    private ArrayList<SeatMovieScreening> reservedSeats = new ArrayList<>();
+
+
+    public Reservation(MovieScreenig movieScreenig) {
+        this.movieScreenig = movieScreenig;
+        this.reservationStatus = 0;
+        this.valueToPay = 0;
     }
+
+    public void addClient(Client client) {
+        this.client = client;
+    }
+
+    public void addSeat(SeatMovieScreening seat) {
+        this.reservedSeats.add(seat);
+    }
+
+    public MovieScreenig getMovieScreenig() {
+        return movieScreenig;
+    }
+
+
+
+
+    private void setReservationData() {
+        for (SeatMovieScreening seat : reservedSeats) {
+            seat.setSeatKindOfReservedToTemporaryReserved();
+            valueToPay = valueToPay + Double.parseDouble(seat.getPrice());
+        }
+    }
+
+    public void confirmReservation() {
+        this.reservationStatus = 1;
+        setReservationData();
+    }
+
+    public void printReservationDetails() {
+        System.out.println("------------------------------------------------------");
+        System.out.println("   RESERVATION DETAILS   ");
+        System.out.println();
+        System.out.println("Company.Company.Cinema: " + movieScreenig.getSeatMovieScreening().getMovieSeat().getCinemaRoom().getCinema().getCinemaName());
+        System.out.println("Address: " + movieScreenig.getSeatMovieScreening().getMovieSeat().getCinemaRoom().getCinema().getCinemaAddress());
+        System.out.println();
+        System.out.println("movie title: " + movieScreenig.getMovieData().getTitle());
+        System.out.println("date: " + movieScreenig.getDate() + ", " + movieScreenig.getTime());
+        System.out.println();
+        System.out.println("room name: " + movieScreenig.getSeatMovieScreening().getMovieSeat());
+
+        for (SeatMovieScreening seat : reservedSeats) {
+            System.out.println("ROW: " + seat.getMovieSeat().getRow() + ", ");
+            System.out.print("seat: " +  seat.getMovieSeat().getSeatNumber() + ", ");
+            System.out.print("testtttttttt: " +  seat.getSeatKindOfReserved() + ", ");
+            System.out.print(seat.getSeatType()+ ", ");
+            System.out.print(seat.getPrice() + ", ");
+            System.out.println();
+
+            System.out.println();
+        }
+        System.out.println("client name: " + this.client.getClientEmail());
+        System.out.println("email: " + this.client.getClientFirstName());
+        System.out.println();
+        System.out.println("to pay: " + this.valueToPay);
+
+        System.out.println("------------------------------------------------------");
+        System.out.println();
+    }
+
 }
 

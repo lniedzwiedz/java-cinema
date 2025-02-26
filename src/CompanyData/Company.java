@@ -1,23 +1,23 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+package CompanyData;
+
+
+import java.util.*;
 
 public class Company {
 
-    private String name;
+   /* private String name;
     private String address;
-    private HashMap<String, Cinema> cinemas;
-    private List<Movie> movies;
-    private List<Movie> moviesByTitle;
-    private List<Movie> moviesByKind;
-    private HashMap<String, Client> clients;
-    private HashMap<String, List<Reservation>> clientReservations;
-    private List<Reservation> reservations;
-    private HashMap<String, List<PurchaseDocument>> clientPurchaseDocuments;
-    private List<PurchaseDocument> purchaseDocuments;
+    private HashMap<String, Company.Company.Cinema> cinemas;
+    private List<Company.Movie> movies;
+    private List<Company.Movie> moviesByTitle;
+    private List<Company.Movie> moviesByKind;
+    private HashMap<String, Company.Client> clients;
+    private HashMap<String, List<Documents.Reservation>> clientReservations;
+    private List<Documents.Reservation> reservations;
+    private HashMap<String, List<Documents.PurchaseDocument>> clientPurchaseDocuments;
+    private List<Documents.PurchaseDocument> purchaseDocuments;
 
-    Company() {
+    Company.Company() {
         this.cinemas = new HashMap<>();
         this.movies = new ArrayList<>();
         this.clients = new HashMap<>();
@@ -25,15 +25,15 @@ public class Company {
         this.clientPurchaseDocuments = new HashMap<>();
     }
 
-    protected void addCinema(Cinema cinema) {
+    protected void addCinema(Company.Company.Cinema cinema) {
         this.cinemas.put(cinema.getCinemaName(), cinema);
     }
 
-    protected void addMovieToCollection(Movie movie) {
+    protected void addMovieToCollection(Company.Movie movie) {
         this.movies.add(movie);
     }
 
-    protected void addClientToCollection(Client client) {
+    protected void addClientToCollection(Company.Client client) {
         this.clients.put(client.getClientEmail(), client);
         this.reservations = new ArrayList<>();
         this.clientReservations.put(client.getClientEmail(), reservations);
@@ -41,7 +41,7 @@ public class Company {
         this.clientPurchaseDocuments.put(client.getClientEmail(), purchaseDocuments);
     }
 
-    protected void addReservationToCollection(Reservation reservation) {
+    protected void addReservationToCollection(Documents.Reservation reservation) {
 
         if (this.clientReservations.get(reservation.getClient().getClientEmail()) == null) {
             this.reservations = new ArrayList<>();
@@ -52,7 +52,7 @@ public class Company {
         this.clientReservations.put(reservation.getClient().getClientEmail(), this.reservations);
     }
 
-    protected void addPurchaseDocumentsToCollection(PurchaseDocument purchaseDocument) {
+    protected void addPurchaseDocumentsToCollection(Documents.PurchaseDocument purchaseDocument) {
         if (this.clientPurchaseDocuments.get(purchaseDocument.getClient().getClientEmail()) == null) {
             this.purchaseDocuments = new ArrayList<>();
             this.clientPurchaseDocuments.put(purchaseDocument.getClient().getClientEmail(), purchaseDocuments);
@@ -62,45 +62,72 @@ public class Company {
         this.clientPurchaseDocuments.put(purchaseDocument.getClient().getClientEmail(), this.purchaseDocuments);
     }
 
-    protected void printAllClientReservations(Client client) {
-        for (Reservation res : this.clientReservations.get(client.getClientEmail())) {
+    protected void printAllClientReservations(Company.Client client) {
+        for (Documents.Reservation res : this.clientReservations.get(client.getClientEmail())) {
             res.printReservationDetails();
         }
     }
 
-    protected void printAllClientPurchaseDocuments(Client client) {
-        for (PurchaseDocument pd :  this.clientPurchaseDocuments.get(client.getClientEmail())) {
+    protected void printAllClientPurchaseDocuments(Company.Client client) {
+        for (Documents.PurchaseDocument pd :  this.clientPurchaseDocuments.get(client.getClientEmail())) {
             pd.printReservationDetails();
         }
     }
 
-    protected Movie getMovieData(String movieTitle) {
+    protected Company.Movie getMovieData(String movieTitle) {
         this.moviesByKind = getMovies(movieTitle);
         return this.moviesByKind.getFirst();
     }
 
-    protected Movie getMovieData(String movieTitle, String movieKind) {
+    protected Company.Movie getMovieData(String movieTitle, String movieKind) {
         this.moviesByKind = getMovies(movieTitle, movieKind);
         return this.moviesByKind.get(0);
     }
 
-    protected List<Movie> getMovies(String movieTitle) {
+    protected List<Company.Movie> getMovies(String movieTitle) {
         this.moviesByTitle = new LinkedList<>();
-        for (Movie movie : this.movies) {
+        for (Company.Movie movie : this.movies) {
             if (movieTitle.equals(movie.getMovieTitle()))
                 this.moviesByTitle.add(movie);
         }
         return this.moviesByTitle;
     }
 
-    protected List<Movie> getMovies(String movieTitle, String movieKind) {
+    protected List<Company.Movie> getMovies(String movieTitle, String movieKind) {
         this.moviesByKind = new LinkedList<>();
-        for (Movie movie : this.movies) {
+        for (Company.Movie movie : this.movies) {
             if (movieTitle.equals(movie.getMovieTitle())) {
                 if (movie.getMovieKind().equals(movieKind))
                     this.moviesByKind.add(movie);
             }
         }
         return this.moviesByKind;
+    }*/
+
+    private String name;
+    private String address;
+    private ArrayList<Cinema> cinemas;
+    private ArrayList<Movie> movies;
+
+
+    Company(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    protected String getName() {
+        return this.name;
+    }
+
+    protected String getAddress() {
+        return this.address;
+    }
+
+    protected ArrayList<Cinema> getCinemas() {
+        return this.cinemas;
+    }
+
+    protected ArrayList<Movie> getMovies() {
+        return this.movies;
     }
 }

@@ -1,22 +1,24 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
+package Company;
+
+import CinemaData.CinemaRoom;
+
 import java.util.*;
 
 public class Cinema {
 
-    //private String cinemaName;
+    /*//private String cinemaName;
     private String cinemaAddress;
     //protected LocalDateTime open =  LocalDateTime.parse("2018-01-11T10:00:00");
     //protected LocalDateTime close =  LocalDateTime.parse("2018-01-11T23:30:00");
     private HashMap<String, String> cinemaData;
-    private HashMap<String, CinemaRoom> cinemaRooms;
+    private HashMap<String, Cinema.CinemaRoom> cinemaRooms;
 
 
-    private List<MovieScreenig> moovieCalendar;
-    private List<MovieScreenig> moviesToScreening;
+    private List<Cinema.MovieScreenig> moovieCalendar;
+    private List<Cinema.MovieScreenig> moviesToScreening;
 
 
-    Cinema(String cinemaName) {
+    Company.Company.Cinema(String cinemaName) {
         this.cinemaRooms = new HashMap<>();
         this.moovieCalendar = new ArrayList<>();
         this.cinemaData = new HashMap<>();
@@ -39,7 +41,7 @@ public class Cinema {
         this.cinemaData.put("cinemaAddress", cinemaAddress);
     }
 
-    protected void addCinemaRoom(CinemaRoom cinemaRoom) {
+    protected void addCinemaRoom(Cinema.CinemaRoom cinemaRoom) {
         this.cinemaRooms.put(cinemaRoom.getRoomName(), cinemaRoom);
     }
 
@@ -47,20 +49,20 @@ public class Cinema {
         this.cinemaData = cinemaData;
     }
 
-    protected CinemaRoom getCinemaRoom(String cinemaRoomName) {
+    protected Cinema.CinemaRoom getCinemaRoom(String cinemaRoomName) {
         return this.cinemaRooms.get(cinemaRoomName);
     }
 
-    protected void addMovieScreenigToCalendar(MovieScreenig movieScreenigData) {
+    protected void addMovieScreenigToCalendar(Cinema.MovieScreenig movieScreenigData) {
         moovieCalendar.add(movieScreenigData);
     }
 
-    protected List<MovieScreenig> getMovieScreenig() {
+    protected List<Cinema.MovieScreenig> getMovieScreenig() {
         LocalDate dateNow = LocalDate.now();
         LocalTime timeNow = LocalTime.now();
         this.moviesToScreening = new ArrayList<>();
 
-        for (MovieScreenig ms : this.moovieCalendar) {
+        for (Cinema.MovieScreenig ms : this.moovieCalendar) {
             int dateCurrent = ms.getDate().compareTo(dateNow);
             int dateFuture = ms.getDate().compareTo(dateNow.plusDays(7));
 
@@ -78,12 +80,12 @@ public class Cinema {
         return this.moviesToScreening;
     }
 
-    protected List<MovieScreenig> getMovieScreenig(String movieTitle) {
+    protected List<Cinema.MovieScreenig> getMovieScreenig(String movieTitle) {
         LocalDate dateNow = LocalDate.now();
         LocalTime timeNow = LocalTime.now();
         this.moviesToScreening = new ArrayList<>();
 
-        for (MovieScreenig ms : this.moovieCalendar) {
+        for (Cinema.MovieScreenig ms : this.moovieCalendar) {
             int dateCurrent = ms.getDate().compareTo(dateNow);
             int dateFuture = ms.getDate().compareTo(dateNow.plusDays(7));
 
@@ -105,12 +107,12 @@ public class Cinema {
         return this.moviesToScreening;
     }
 
-    protected List<MovieScreenig> getMovieScreenig(String movieTitle, String movieKind) {
+    protected List<Cinema.MovieScreenig> getMovieScreenig(String movieTitle, String movieKind) {
         LocalDate dateNow = LocalDate.now();
         LocalTime timeNow = LocalTime.now();
         this.moviesToScreening = new LinkedList<>();
 
-        for (MovieScreenig ms : this.moovieCalendar) {
+        for (Cinema.MovieScreenig ms : this.moovieCalendar) {
             int dateCurrent = ms.getDate().compareTo(dateNow);
             int dateFuture = ms.getDate().compareTo(dateNow.plusDays(7));
 
@@ -136,12 +138,12 @@ public class Cinema {
         return this.moviesToScreening;
     }
 
-    protected List<MovieScreenig> getMovieScreenig(String movieTitle, String movieDate, String movieTime) {
+    protected List<Cinema.MovieScreenig> getMovieScreenig(String movieTitle, String movieDate, String movieTime) {
         LocalDate dateNow = LocalDate.now();
         LocalTime timeNow = LocalTime.now();
         this.moviesToScreening = new LinkedList<>();
 
-        for (MovieScreenig ms : this.moovieCalendar) {
+        for (Cinema.MovieScreenig ms : this.moovieCalendar) {
             int dateCurrent = ms.getDate().compareTo(dateNow);
             int dateFuture = ms.getDate().compareTo(dateNow.plusDays(7));
 
@@ -164,7 +166,7 @@ public class Cinema {
                         }
                     }
                 }
-                
+
             }
         }
         return this.moviesToScreening;
@@ -172,31 +174,55 @@ public class Cinema {
 
     protected void printMovieScreeningData() {
         getMovieScreenig();
-        for (MovieScreenig ms : this.moviesToScreening) {
+        for (Cinema.MovieScreenig ms : this.moviesToScreening) {
             ms.printMovieScreeningData();
         }
     }
 
     protected void printMovieScreeningData(String movieTitle) {
         getMovieScreenig(movieTitle);
-        for (MovieScreenig ms : this.moviesToScreening) {
+        for (Cinema.MovieScreenig ms : this.moviesToScreening) {
             ms.printMovieScreeningData();
         }
     }
 
     protected void printMovieScreeningData(String movieTitle, String movieKind) {
         getMovieScreenig(movieTitle, movieKind);
-        for (MovieScreenig ms : this.moviesToScreening) {
+        for (Cinema.MovieScreenig ms : this.moviesToScreening) {
             ms.printMovieScreeningData();
         }
     }
 
     protected void printMovieScreeningData(String movieTitle, String movieDate, String movieTime) {
         getMovieScreenig(movieTitle, movieDate, movieTime);
-        for (MovieScreenig ms : this.moviesToScreening) {
+        for (Cinema.MovieScreenig ms : this.moviesToScreening) {
             ms.printMovieScreeningData();
         }
+    }*/
+
+    private String cinemaName;
+    private String cinemaAddress;
+    private Set<CinemaRoom> cinemaRooms;
+
+    public Cinema(String cinemaName, String cinemaAddress) {
+        this.cinemaName = cinemaName;
+        this.cinemaAddress = cinemaAddress;
     }
 
+    public String getCinemaName() {
+        return this.cinemaName;
+    }
+
+    public String getCinemaAddress() {
+        return this.cinemaAddress;
+    }
+
+    public Set<CinemaRoom> getCinemaRoom() {
+        return this.cinemaRooms;
+    }
+
+    public void addCinemaRoom(CinemaRoom cinemaRoom) {
+        this.cinemaRooms.add(cinemaRoom);
+    }
 
 }
