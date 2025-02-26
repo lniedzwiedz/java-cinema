@@ -2,7 +2,7 @@ package Documents;
 
 import CinemaData.MovieScreenig;
 import CinemaData.SeatMovieScreening;
-import Company.Client;
+import CompanyData.Client;
 
 import java.util.ArrayList;
 
