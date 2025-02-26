@@ -2,6 +2,7 @@ import java.util.HashMap;
 
 public class Reservation {
 
+
     //private String reservationNumber;
     private MovieScreenig movieScreenig;
     private Client client;
@@ -13,6 +14,7 @@ public class Reservation {
         this.reservationSeatsDetails = new HashMap<>();
         this.chossenSeatsPerRow = new HashMap<>();
         this.movieScreenig = movieScreenig;
+        System.out.println("test brach git");
     }
 
     protected void setClient(String clientEmail) {
