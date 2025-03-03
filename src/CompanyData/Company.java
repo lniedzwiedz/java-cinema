@@ -1,6 +1,8 @@
 package CompanyData;
 
 
+import Documents.Reservation;
+
 import java.util.*;
 
 public class Company {
@@ -106,11 +108,11 @@ public class Company {
 
     private String name;
     private String address;
-    private ArrayList<Cinema> cinemas;
-    private ArrayList<Movie> movies;
+    private ArrayList<Cinema> cinemas = new ArrayList<>();
+    private ArrayList<Movie> movies = new ArrayList<>();
+    private ArrayList<Client> clients = new ArrayList<>();
 
-
-    Company(String name, String address) {
+    public Company(String name, String address) {
         this.name = name;
         this.address = address;
     }
@@ -130,4 +132,14 @@ public class Company {
     protected ArrayList<Movie> getMovies() {
         return this.movies;
     }
+
+    protected  void setClients(Client client) {
+        this.clients.add(client);
+    }
+
+
+
+
+
+
 }

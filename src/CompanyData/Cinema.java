@@ -1,6 +1,7 @@
 package CompanyData;
 
 import CinemaData.CinemaRoom;
+import CinemaData.MovieScreenig;
 
 import java.util.*;
 
@@ -13,45 +14,8 @@ public class Cinema {
     private HashMap<String, String> cinemaData;
     private HashMap<String, Cinema.CinemaRoom> cinemaRooms;
 
-
     private List<Cinema.MovieScreenig> moovieCalendar;
     private List<Cinema.MovieScreenig> moviesToScreening;
-
-
-    Company.Company.Cinema(String cinemaName) {
-        this.cinemaRooms = new HashMap<>();
-        this.moovieCalendar = new ArrayList<>();
-        this.cinemaData = new HashMap<>();
-        this.cinemaData.put("cinemaName", cinemaName);
-    }
-
-    protected  HashMap<String, String> getCinemaData(){
-        return this.cinemaData;
-    }
-
-    protected String getCinemaName() {
-        return this.cinemaData.get("cinemaName");
-    }
-
-    protected String gerCinemaAddress() {
-        return this.cinemaData.get("cinemaAddress");
-    }
-
-    protected void setCinemaAddress(String cinemaAddress) {
-        this.cinemaData.put("cinemaAddress", cinemaAddress);
-    }
-
-    protected void addCinemaRoom(Cinema.CinemaRoom cinemaRoom) {
-        this.cinemaRooms.put(cinemaRoom.getRoomName(), cinemaRoom);
-    }
-
-    protected void setCinemaData(HashMap<String, String> cinemaData) {
-        this.cinemaData = cinemaData;
-    }
-
-    protected Cinema.CinemaRoom getCinemaRoom(String cinemaRoomName) {
-        return this.cinemaRooms.get(cinemaRoomName);
-    }
 
     protected void addMovieScreenigToCalendar(Cinema.MovieScreenig movieScreenigData) {
         moovieCalendar.add(movieScreenigData);
@@ -203,6 +167,8 @@ public class Cinema {
     private String cinemaName;
     private String cinemaAddress;
     private Set<CinemaRoom> cinemaRooms;
+    private Set<MovieScreenig> movieScreenigs;
+    private Company company;
 
     public Cinema(String cinemaName, String cinemaAddress) {
         this.cinemaName = cinemaName;
@@ -221,8 +187,16 @@ public class Cinema {
         return this.cinemaRooms;
     }
 
-    public void addCinemaRoom(CinemaRoom cinemaRoom) {
+    public void setCinemaRoom(CinemaRoom cinemaRoom) {
         this.cinemaRooms.add(cinemaRoom);
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Company getCompany() {
+        return this.company;
     }
 
 }
