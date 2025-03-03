@@ -19,15 +19,16 @@ public class Seat {
         return this.seatNumber;
     }
 
-
     public String getRow() {
         return this.rowNumber;
+    }
+
+    public String getColNumber() {
+        return this.colNumber;
     }
 
     public CinemaRoom getCinemaRoom() {
         return this.cinemaRoom;
     }
-
-
 
 }

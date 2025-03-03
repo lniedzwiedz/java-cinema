@@ -1,41 +1,39 @@
 package CompanyData;
 
+import Documents.Reservation;
+
+import java.util.ArrayList;
+
 public class Client {
 
-    /*private HashMap<String, String> clientData;
-
-    Company.Client(String clientEmail) {
-        this.clientData = new HashMap<>();
-        this.clientData.put("clientEmail", clientEmail);
-    }
-
-    protected void setClientName(String clientName) {
-        this.clientData.put("clientName", clientName);
-    }
-
-    protected String getClientEmail() {
-        return this.clientData.get("clientEmail");
-    }
-
-    protected String getClientName() {
-        return this.clientData.get("clientName");
-    }*/
-
     private String email;
-    private String password;
+    //private String password;
     private String firstName;
+    private ArrayList<Reservation> reservations = new ArrayList<>();
 
-    public Client(String email, String firstName) {
+    public Client(String email) {
         this.email = email;
-        this.firstName = firstName;
+        this.firstName = "unregistered client/customer";
     }
 
     public String getClientEmail() {
         return this.email;
     }
 
+    public void setClientFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getClientFirstName() {
         return this.firstName;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+    }
+
+    public ArrayList<Reservation> getReservations() {
+        return this.reservations;
     }
 
 }

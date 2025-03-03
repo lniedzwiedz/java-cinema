@@ -4,101 +4,20 @@ import CinemaData.Seat;
 import CinemaData.SeatMovieScreening;
 import CompanyData.Cinema;
 import CompanyData.Client;
+import CompanyData.Company;
 import CompanyData.Movie;
+import Documents.PurchaseDocument;
 import Documents.Reservation;
+import Printers.PrintMovieScreening;
+import Printers.PrintPurchaseDocument;
+import Printers.PrintReservation;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
-        //Company.Company headquarter = new Company.Company();
-
-        /*Company.Movie film1 = new Company.Movie("Moana");
-        film1.setMovieTime("128");
-        film1.setMovieGenre("Comedy");
-        film1.setMovieKind("2D");
-        film1.setMovieLanguage("ENG");
-
-        Company.Movie film13D = new Company.Movie("Moana");
-        film13D.setMovieTime("128");
-        film13D.setMovieGenre("Comedy");
-        film13D.setMovieKind("3D");
-        film13D.setMovieLanguage("ENG");
-
-        Company.Movie film2 = new Company.Movie("Bolek i Lolek");
-        film2.setMovieTime("20");
-        film2.setMovieGenre("Comedy");
-        film2.setMovieKind("3D");
-        film2.setMovieLanguage("PL");
-
-        Company.Movie film3 = new Company.Movie("Zmiennokształtni");
-        film3.setMovieTime("20");
-        film3.setMovieGenre("Comedy");
-        film3.setMovieKind("2D");
-        film3.setMovieLanguage("PL");
-
-        Company.Movie film33D = new Company.Movie("Zmiennokształtni");
-        film33D.setMovieTime("120");
-        film33D.setMovieGenre("Comedy");
-        film33D.setMovieKind("3D");
-        film33D.setMovieLanguage("PL");
-
-        Company.Movie film4 = new Company.Movie("Kleks i  wynalazek ...");
-        film4.setMovieTime("20");
-        film4.setMovieGenre("Comedy");
-        film4.setMovieKind("3D");
-        film4.setMovieLanguage("PL");
-
-        headquarter.addMovieToCollection(film1);
-        headquarter.addMovieToCollection(film13D);
-        headquarter.addMovieToCollection(film2);
-
-        headquarter.addMovieToCollection(film3);
-        headquarter.addMovieToCollection(film33D);
-        headquarter.addMovieToCollection(film4);*
-
-        Company.Company.Cinema cinema1 = new Company.Company.Cinema("Kino Kraków");
-        cinema1.setCinemaAddress("ul. nieIstnieje, 30-666 Kraków");
-        //headquarter.addCinema(cinema1);
-
-        Company.Company.Cinema cinema2 = new Company.Company.Cinema("Kino Warszawa");
-        cinema2.setCinemaAddress("ul. Henryka N., 30-999 Warszawa");
-        //headquarter.addCinema(cinema2);
-
-        // cinema1
-        Cinema.CinemaRoom cinemaRoom1 = new Cinema.CinemaRoom(cinema1, "room 1");
-        cinemaRoom1.createSeatsForOneRow(1, 1);
-        cinemaRoom1.createSeatsForOneRow(2, 2);
-        cinemaRoom1.createSeatsForOneRow(3, 3, "VIP");
-        cinemaRoom1.createSeatsForOneRow(4, 4);
-        cinemaRoom1.createSeatsForOneRow(5, 5);
-        cinema1.addCinemaRoom(cinemaRoom1);
-
-        Cinema.CinemaRoom cinemaRoom2 = new Cinema.CinemaRoom(cinema1, "room 2");
-        cinemaRoom2.createSeatsForOneRow(1, 4);
-        cinemaRoom2.createSeatsForOneRow(2, 6);
-        cinemaRoom2.createSeatsForOneRow(3, 6,"VIP");
-        cinemaRoom2.createSeatsForOneRow(4, 6);
-        cinemaRoom2.createSeatsForOneRow(5, 5);
-        cinema1.addCinemaRoom(cinemaRoom2);
-
-        //cinema 2
-        Cinema.CinemaRoom cinemaRoom1c2 = new Cinema.CinemaRoom(cinema2, "room 3");
-        cinemaRoom1c2.createSeatsForOneRow(1, 5);
-        cinemaRoom1c2.createSeatsForOneRow(2, 5);
-        cinemaRoom1c2.createSeatsForOneRow(3, 5, "VIP");
-        cinemaRoom1c2.createSeatsForOneRow(4, 5);
-        cinemaRoom1c2.createSeatsForOneRow(5, 5);
-       cinema2.addCinemaRoom(cinemaRoom1c2);
-
-        Cinema.CinemaRoom cinemaRoom2c2 = new Cinema.CinemaRoom(cinema2, "room 4");
-        cinemaRoom2c2.createSeatsForOneRow(1, 4);
-        cinemaRoom2c2.createSeatsForOneRow(2, 4);
-        cinemaRoom2c2.createSeatsForOneRow(3, 4, "VIP");
-        cinemaRoom2c2.createSeatsForOneRow(4, 4);
-        cinemaRoom2c2.createSeatsForOneRow(5, 4);
-        cinema2.addCinemaRoom(cinemaRoom2c2);
-
+        /*
         // cinema1
         Cinema.MovieScreenig ms1 = new Cinema.MovieScreenig(headquarter.getMovieData("Bolek i Lolek"),
                 "2025-02-10", "20:15:00", cinema1.getCinemaRoom("room 1"))
@@ -114,79 +33,9 @@ public class Main {
         Cinema.MovieScreenig ms5 = new Cinema.MovieScreenig(headquarter.getMovieData("Moana", "3D"),
                 "2025-02-10", "21:10:00", cinema1.getCinemaRoom("room 2"));
 
-        cinema1.addMovieScreenigToCalendar(ms1);
-        cinema1.addMovieScreenigToCalendar(ms2);
-        cinema1.addMovieScreenigToCalendar(ms3);
-        cinema1.addMovieScreenigToCalendar(ms4);
-        cinema1.addMovieScreenigToCalendar(ms5);
-
-        // cinema2
-        Cinema.MovieScreenig ms1c2 = new Cinema.MovieScreenig(headquarter.getMovieData("Zmiennokształtni"),
-                "2025-03-01", "20:15:00", cinema2.getCinemaRoom("room 3"));
-
-        Cinema.MovieScreenig ms2c2 = new Cinema.MovieScreenig(headquarter.getMovieData("Kleks i  wynalazek ..."),
-                "2025-02-04", "18:05:00", cinema2.getCinemaRoom("room 3"));
-
-        Cinema.MovieScreenig ms3c2 = new Cinema.MovieScreenig(headquarter.getMovieData("Bolek i Lolek"),
-                "2025-02-10", "15:30:00", cinema2.getCinemaRoom("room 4"));
-
-        Cinema.MovieScreenig ms4c2 = new Cinema.MovieScreenig(headquarter.getMovieData("Zmiennokształtni", "2D"),
-                "2025-02-04", "18:00:00", cinema2.getCinemaRoom("room 3"));
-
-        Cinema.MovieScreenig ms5c2 = new Cinema.MovieScreenig(headquarter.getMovieData("Zmiennokształtni", "3D"),
-                "2025-02-21", "19:10:00", cinema2.getCinemaRoom("room 4"));
-
-        cinema2.addMovieScreenigToCalendar(ms1c2);
-        cinema2.addMovieScreenigToCalendar(ms2c2);
-        cinema2.addMovieScreenigToCalendar(ms3c2);
-        cinema2.addMovieScreenigToCalendar(ms4c2);
-        cinema2.addMovieScreenigToCalendar(ms5c2);
-
-        //cinema1.printMovieScreeningData();
-        //cinema1.printMovieScreeningData("Bolek i Lolek");
-        //cinema1.printMovieScreeningData("Moana", "2D");
-        //cinema1.printMovieScreeningData("Moana", "3D");
-        //cinema1.printMovieScreeningData("Moana");
-        //cinema1.printMovieScreeningData("Moana", "2025-02-04", "17:30:00");
-
-        // registered client
-        Company.Client c1 = new Company.Client("bolek1@gmail.com");
-        c1.setClientName("Bolek II");
-        headquarter.addClientToCollection(c1);
-
-        Company.Client c2 = new Company.Client("lolek2@gmail.com");
-        c2.setClientName("Lolek III");
-        headquarter.addClientToCollection(c2);
-
-        // reservation
-        Documents.Reservation res1 = new Documents.Reservation(ms1c2);
-        res1.chooseSeatsPerRow("2", "1,");
-        res1.chooseSeatsPerRow("4", "2, 3,4");
-        //res1.setClient("gosc@gmail.com");
-        res1.setClient(c1);
-        res1.confirmReservation();
-        headquarter.addReservationToCollection(res1);
-        //res1.printReservationDetails();
-
-        Documents.Reservation res2 = new Documents.Reservation(ms1);
-        res2.chooseSeatsPerRow("5", "1");
-        res2.setClient("gosc@gmail.com");
-        res2.confirmReservation();
-        headquarter.addReservationToCollection(res2);
-        //res2.printReservationDetails();
-
-        Documents.Reservation res3 = new Documents.Reservation(ms2);
-        res3.chooseSeatsPerRow("2", "2,");
-        res3.chooseSeatsPerRow("5", "4,5");
-        res3.setClient(c1);
-        res3.confirmReservation();
-        headquarter.addReservationToCollection(res3);
-        //res3.printReservationDetails();
-
         Documents.Reservation res4 = new Documents.Reservation(ms1);
         res2.chooseSeatsPerRow("5", "1,2,3");
         res4.chooseSeatsPerRow("3", "1,3");
-        //res1.setClient("gosc@gmail.com");
         res4.setClient(c2);
         res4.confirmReservation();
         headquarter.addReservationToCollection(res4);
@@ -201,39 +50,226 @@ public class Main {
         pd1.payForReservation(true, true);
         headquarter.addPurchaseDocumentsToCollection(pd1);
 
-        Documents.PurchaseDocument pd2 = new Documents.PurchaseDocument(res3);
-        pd2.payForReservation(true, true);
-        headquarter.addPurchaseDocumentsToCollection(pd2);
-
         //pd1.cancelReservation();
 
         //headquarter.printAllClientPurchaseDocuments(c1);
         cinema1.printMovieScreeningData("Bolek i Lolek");*/
 
+//      // company
+        Company headquarter = new Company("Headquarter", "address, road Xyz 8/99, City-City2");
 
-
+//      // movie
         Movie movie1 = new Movie("Bolek i Lolek", "3D", "Comedy", "110", "PL");
+        Movie movie2 = new Movie("Kleks", "2D", "Comedy", "130", "PL");
 
+//      // cinema1
         Cinema cinema1 = new Cinema("Kino Kraków", "ul. nieIstnieje, 30-666 Kraków");
+        cinema1.setCompany(headquarter);
 
+//      // cinema1  -> cinemaRoom1
         CinemaRoom cinemaRoom1 = new CinemaRoom(cinema1, "room 1");
-        Seat seat1 = new Seat("1", "1","1", cinemaRoom1);
+        Seat seat1 = new Seat("1", "1", "1", cinemaRoom1);
+        Seat seat2 = new Seat("2", "1", "2", cinemaRoom1);
+        Seat seat3 = new Seat("3", "1", "3", cinemaRoom1);
+
+        Seat seat4 = new Seat("4", "2", "1", cinemaRoom1);
+        Seat seat5 = new Seat("5", "2", "2", cinemaRoom1);
+        Seat seat6 = new Seat("6", "2", "3", cinemaRoom1);
+
         cinemaRoom1.addSeat(seat1);
+        cinemaRoom1.addSeat(seat2);
+        cinemaRoom1.addSeat(seat3);
+        cinemaRoom1.addSeat(seat4);
+        cinemaRoom1.addSeat(seat5);
+        cinemaRoom1.addSeat(seat6);
 
+//      // cinema1 -> cinemaRoom1 -> seats for 1 movie screening 1
         SeatMovieScreening seatMS1 = new SeatMovieScreening(seat1, "STANDARD", "29.99");
+        SeatMovieScreening seatMS2 = new SeatMovieScreening(seat2, "VIP", "29.99");
+        SeatMovieScreening seatMS3 = new SeatMovieScreening(seat3, "STANDARD", "29.99");
+        SeatMovieScreening seatMS4 = new SeatMovieScreening(seat4, "STANDARD", "29.99");
+        SeatMovieScreening seatMS5 = new SeatMovieScreening(seat5, "VIP", "29.99");
+        SeatMovieScreening seatMS6 = new SeatMovieScreening(seat6, "STANDARD", "29.99");
 
-
-        MovieScreenig ms1 = new MovieScreenig(movie1,  "2025-02-04", "17:00:00");
+//      // cinema1 -> movie screening 1
+        MovieScreenig ms1 = new MovieScreenig(movie1, "2025-02-04", "17:00:00");
         ms1.addSeat(seatMS1);
+        ms1.addSeat(seatMS2);
+        ms1.addSeat(seatMS3);
+        ms1.addSeat(seatMS4);
+        ms1.addSeat(seatMS5);
+        ms1.addSeat(seatMS6);
+
+//      // cinema1 -> cinemaRoom1 -> seats for 2 movie screening 2
+        SeatMovieScreening seatMS1b = new SeatMovieScreening(seat1, "STANDARD", "29.99");
+        SeatMovieScreening seatMS2b = new SeatMovieScreening(seat2, "VIP", "29.99");
+        SeatMovieScreening seatMS3b = new SeatMovieScreening(seat3, "VIP", "29.99");
+        SeatMovieScreening seatMS4b = new SeatMovieScreening(seat4, "VIP", "29.99");
+        SeatMovieScreening seatMS5b = new SeatMovieScreening(seat5, "VIP", "39.99");
+        SeatMovieScreening seatMS6b = new SeatMovieScreening(seat6, "STANDARD", "29.99");
+
+//      // cinema1 -> movie screening 2
+        MovieScreenig ms2 = new MovieScreenig(movie2, "2025-03-10", "19:00:00");
+        ms2.addSeat(seatMS1b);
+        ms2.addSeat(seatMS2b);
+        ms2.addSeat(seatMS3b);
+        ms2.addSeat(seatMS4b);
+        ms2.addSeat(seatMS5b);
+        ms2.addSeat(seatMS6b);
+
+        PrintMovieScreening printMovieScreening = new PrintMovieScreening();
+//        System.out.println("---------- BEFORE RESERVATION ----------");
+//        printMovieScreening.printMovieScreeningData(ms1);
+//        printMovieScreening.printMovieScreeningData(ms2);
+
+//       //  client/ customer
+        Client c1 = new Client("c1email@gmail.com");
+        c1.setClientFirstName("John - c1 firstName");
+
+        // reservation with registered client/ customer
+        Reservation res1 = new Reservation(ms1, c1);
+        res1.addChosenSeat(seatMS1);
+        res1.addChosenSeat(seatMS4);
+        res1.confirmReservationBeforePayment();
+        c1.setReservation(res1);
+
+        Reservation res1b = new Reservation(ms2, c1);
+        res1b.addChosenSeat(seatMS5b);
+        res1b.addChosenSeat(seatMS6b);
+        res1b.confirmReservationBeforePayment();
+        c1.setReservation(res1b);
+
+        PrintReservation pr = new PrintReservation();
+//        pr.printReservationDetails(res1);
+
+//      // reservation without registered client/ customer
+        Reservation res2 = new Reservation(ms2, "host@test1.com");
+        res2.addChosenSeat(seatMS2b);
+        res2.addChosenSeat(seatMS3b);
+        res2.confirmReservationBeforePayment();
 
 
-        Client c1 = new Client("c1email@gmail.com", "c1 firstName");
+//       //movie screening - after reservation
+//        System.out.println("---------- AFTER RESERVATION ----------");
+//        printMovieScreening.printMovieScreeningData(ms1);
+//        printMovieScreening.printMovieScreeningData(ms2);
 
-        Reservation res1 = new Reservation(ms1);
-        res1.addSeat(seatMS1);
-        res1.addClient(c1);
-        res1.confirmReservation();
-        res1.printReservationDetails();
+        PurchaseDocument pm1 = new PurchaseDocument(res1);
+        pm1.payForReservation(true, true);
+
+        PrintPurchaseDocument ppd = new PrintPurchaseDocument();
+//        ppd.printPurchaseDocumentDetails(pm1);
+//
+//        //movie screening - after payment
+//        System.out.println("---------- AFTER PAYMENT ----------");
+//        printMovieScreening.printMovieScreeningData(ms1);
+//        printMovieScreening.printMovieScreeningData(ms2);
+
+//      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//      cinema2
+        Cinema cinema2 = new Cinema("Kino Warszawa", "ul. war, 30-123 Warszawa");
+        cinema2.setCompany(headquarter);
+
+//      // cinema2 -> cinema2Room1
+        CinemaRoom cinema2Room1 = new CinemaRoom(cinema2, "room 1");
+        Seat seat1c2 = new Seat("1", "1", "1", cinema2Room1);
+        Seat seat2c2 = new Seat("2", "1", "2", cinema2Room1);
+        Seat seat3c2 = new Seat("3", "1", "3", cinema2Room1);
+
+        Seat seat4c2 = new Seat("4", "2", "1", cinema2Room1);
+        Seat seat5c2 = new Seat("5", "2", "2", cinema2Room1);
+        Seat seat6c2 = new Seat("6", "2", "3", cinema2Room1);
+
+        cinema2Room1.addSeat(seat1c2);
+        cinema2Room1.addSeat(seat2c2);
+        cinema2Room1.addSeat(seat3c2);
+        cinema2Room1.addSeat(seat4c2);
+        cinema2Room1.addSeat(seat5c2);
+        cinema2Room1.addSeat(seat6c2);
+
+//       // cinema2 -> cinema2Room1 -> seats for 1 movie screening 1
+        SeatMovieScreening seatMS1c2 = new SeatMovieScreening(seat1c2, "STANDARD", "27.99");
+        SeatMovieScreening seatMS2c2 = new SeatMovieScreening(seat2c2, "VIP", "37.99");
+        SeatMovieScreening seatMS3c2 = new SeatMovieScreening(seat3c2, "STANDARD", "27.99");
+        SeatMovieScreening seatMS4c2 = new SeatMovieScreening(seat4c2, "STANDARD", "27.99");
+        SeatMovieScreening seatMS5c2 = new SeatMovieScreening(seat5c2, "VIP", "37.99");
+        SeatMovieScreening seatMS6c2 = new SeatMovieScreening(seat6c2, "STANDARD", "27.99");
+
+//       // cinema2 -> movie screening 1
+        MovieScreenig ms1c2 = new MovieScreenig(movie1, "2025-02-04", "17:00:00");
+        ms1c2.addSeat(seatMS1c2);
+        ms1c2.addSeat(seatMS2c2);
+        ms1c2.addSeat(seatMS3c2);
+        ms1c2.addSeat(seatMS4c2);
+        ms1c2.addSeat(seatMS5c2);
+        ms1c2.addSeat(seatMS6c2);
+
+//      //  cinema2 -> cinema2Room1 -> seats for 2 movie screening 2
+        SeatMovieScreening seatMS1bc2 = new SeatMovieScreening(seat1c2, "STANDARD", "29.99");
+        SeatMovieScreening seatMS2bc2 = new SeatMovieScreening(seat2c2, "VIP", "29.99");
+        SeatMovieScreening seatMS3bc2 = new SeatMovieScreening(seat3c2, "VIP", "29.99");
+        SeatMovieScreening seatMS4bc2 = new SeatMovieScreening(seat4c2, "VIP", "29.99");
+        SeatMovieScreening seatMS5bc2 = new SeatMovieScreening(seat5c2, "VIP", "29.99");
+        SeatMovieScreening seatMS6bc2 = new SeatMovieScreening(seat6c2, "STANDARD", "29.99");
+
+//      // cinema2 -> movie screening 2
+        MovieScreenig ms2c2 = new MovieScreenig(movie2, "2025-03-10", "19:00:00");
+        ms2c2.addSeat(seatMS1bc2);
+        ms2c2.addSeat(seatMS2bc2);
+        ms2c2.addSeat(seatMS3bc2);
+        ms2c2.addSeat(seatMS4bc2);
+        ms2c2.addSeat(seatMS5bc2);
+        ms2c2.addSeat(seatMS6bc2);
+
+//        //PrintMovieScreening printMovieScreening = new PrintMovieScreening();
+//        System.out.println("---------- BEFORE RESERVATION ----------");
+//        printMovieScreening.printMovieScreeningData(ms1c2);
+//        printMovieScreening.printMovieScreeningData(ms2c2);
+
+//        // client/ customer
+        Client c2 = new Client("c1emai222l@gmail.com");
+        c2.setClientFirstName("John22 - c2 firstName222");
+
+        // reservation with registered client/ customer
+        Reservation res1c2 = new Reservation(ms1c2, c2);
+        res1c2.addChosenSeat(seatMS1c2);
+        res1c2.confirmReservationBeforePayment();
+        c2.setReservation(res1c2);
+        PrintReservation prc2 = new PrintReservation();
+//        pr.printReservationDetails(res1c2);
+
+//        // reservation without registered client/ customer
+        Reservation res2c2 = new Reservation(ms2c2, "host234@test1.com");
+        res2c2.addChosenSeat(seatMS2bc2);
+        res2c2.addChosenSeat(seatMS3bc2);
+        res2c2.confirmReservationBeforePayment();
+//        pr.printReservationDetails(res2c2);
+
+        // reservation with registered client/ customer
+        Reservation res3c2 = new Reservation(ms1c2, c1);
+        res3c2.addChosenSeat(seatMS1c2);
+        res3c2.confirmReservationBeforePayment();
+        c1.setReservation(res3c2);
+//        pr.printReservationDetails(res3c2);
+
+//        //movie screening - after reservation
+//      System.out.println("---------- AFTER RESERVATION ----------");
+//        printMovieScreening.printMovieScreeningData(ms1c2);
+//        printMovieScreening.printMovieScreeningData(ms2c2);
+
+        /*PurchaseDocument pm1c2 = new PurchaseDocument(res1c2);
+        pm1c2.payForReservation(true, true);*/
+
+        PrintPurchaseDocument ppdc2 = new PrintPurchaseDocument();
+//        ppdc2.printPurchaseDocumentDetails(pm1c2);
+
+//      //movie screening - after payment
+//        System.out.println("---------- AFTER PAYMENT ----------");
+//        printMovieScreening.printMovieScreeningData(ms1c2);
+//        printMovieScreening.printMovieScreeningData(ms2c2);
+
+
+        printMovieScreening.printClientReservations(c1);
 
 
     }
