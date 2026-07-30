@@ -10,7 +10,8 @@ public class PrintMovieScreening {
 
         System.out.println();
         System.out.println("------------------------------------------------------");
-        System.out.println("--------------- Print Movie Screening ---------------");
+        System.out.println("              MOVIE SCREENING");
+        System.out.println("------------------------------------------------------");
         System.out.println("* CINEMA *");
 
         SeatMovieScreening firstSeat =
@@ -30,15 +31,15 @@ public class PrintMovieScreening {
         System.out.println("  " + movieScreening.getMovie().getKind() + ", " + movieScreening.getMovie().getLanguage());
 
         String movieStartMinute = (movieScreening.getTime().getMinute() < 10)
-                        ? "0" + movieScreening.getTime().getMinute()
-                        : String.valueOf(movieScreening.getTime().getMinute());
+                ? "0" + movieScreening.getTime().getMinute()
+                : String.valueOf(movieScreening.getTime().getMinute());
 
         System.out.println("  "
-                        + movieScreening.getDate().getDayOfWeek() + ", "
-                        + movieScreening.getDate().getDayOfMonth() + " "
-                        + movieScreening.getDate().getMonth() + ", "
-                        + movieScreening.getTime().getHour() + ":"
-                        + movieStartMinute);
+                + movieScreening.getDate().getDayOfWeek() + ", "
+                + movieScreening.getDate().getDayOfMonth() + " "
+                + movieScreening.getDate().getMonth() + ", "
+                + movieScreening.getTime().getHour() + ":"
+                + movieStartMinute);
 
         System.out.println();
         System.out.println("      |  SEATS");
@@ -71,44 +72,6 @@ public class PrintMovieScreening {
 
         System.out.println();
         System.out.println("------------------------------------------------------");
+        System.out.println();
     }
-
-//    public String printSeats(Reservation reservation) {
-//
-//        StringBuilder seats = new StringBuilder();
-//
-//
-//        for (SeatMovieScreening sms : reservation.getSeatsChosenByClient()) {
-//
-//            Seat seat = sms.getSeat();
-//
-//
-//            seats.append(" | row: ")
-//                    .append(seat.getRowNumber())
-//                    .append(", ");
-//
-//
-//            seats.append("col: ")
-//                    .append(seat.getColNumber())
-//                    .append(", ");
-//
-//
-//            seats.append("type: ")
-//                    .append(seat.getSeatType())
-//                    .append(", ");
-//
-//
-//            seats.append("status: ")
-//                    .append(sms.getSeatStatus())
-//                    .append(", ");
-//
-//
-//            seats.append("price: ")
-//                    .append(sms.getPrice())
-//                    .append(" | ");
-//        }
-//
-//
-//        return seats.toString();
-//    }
 }
