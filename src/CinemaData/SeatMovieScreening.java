@@ -2,38 +2,46 @@ package CinemaData;
 
 public class SeatMovieScreening {
 
-    private String seatType;
-    private String price;
-    private int seatKindOfReserved;
-    private Seat movieSeat;
-
-    public SeatMovieScreening(Seat seat, String seatType, String price) {
-        this.movieSeat = seat;
-        this.seatType = seatType;
+    private Seat seat;
+    private SeatStatus seatStatus;
+    private double price;
+    public SeatMovieScreening(Seat seat, double price) {
+        this.seat = seat;
         this.price = price;
-        this.seatKindOfReserved = 0;
+        this.seatStatus = SeatStatus.AVAILABLE;
     }
 
-    public Seat getMovieSeat() {
-        return this.movieSeat;
+    public Seat getSeat() {
+        return seat;
     }
 
-    public String getSeatType() {
-        return this.seatType;
+    public SeatStatus getSeatStatus() {
+        return seatStatus;
     }
 
-    public String getPrice() {
-        return this.price;
+    public double getPrice() {
+        return price;
     }
 
-    public int getSeatKindOfReserved() {
-        return this.seatKindOfReserved;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public void setSeatKindOfReserved(int seatKindOfReserved) {
-        this.seatKindOfReserved = seatKindOfReserved;
+    // Change status to reserved after successful payment
+    public void reserve() {
+
+        this.seatStatus = SeatStatus.RESERVED;
     }
 
+    // Temporary reservation while client is making payment
+    public void temporarilyReserve() {
 
+        this.seatStatus = SeatStatus.TEMPORARILY_RESERVED;
+    }
 
+    // Release the seat after cancellation
+    public void cancelReservation() {
+
+        this.seatStatus = SeatStatus.AVAILABLE;
+    }
 }

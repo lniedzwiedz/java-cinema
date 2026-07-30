@@ -3,17 +3,22 @@ package CompanyData;
 import Documents.Reservation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Client {
 
     private String email;
     //private String password;
     private String firstName;
-    private ArrayList<Reservation> reservations = new ArrayList<>();
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Client(String email) {
+        this(email, "unregistered client/customer");
+    }
+
+    public Client(String email, String firstName) {
         this.email = email;
-        this.firstName = "unregistered client/customer";
+        this.firstName = firstName;
     }
 
     public String getClientEmail() {
@@ -28,12 +33,11 @@ public class Client {
         return this.firstName;
     }
 
-    public void setReservation(Reservation reservation) {
+    public void addReservation(Reservation reservation) {
         this.reservations.add(reservation);
     }
 
-    public ArrayList<Reservation> getReservations() {
+    public List<Reservation> getReservations() {
         return this.reservations;
     }
-
 }

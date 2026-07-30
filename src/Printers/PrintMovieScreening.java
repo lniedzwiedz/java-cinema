@@ -1,106 +1,114 @@
 package Printers;
 
-import CinemaData.MovieScreenig;
-import CinemaData.SeatMovieScreening;
-import CompanyData.Client;
-import Documents.Reservation;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
-import static Printers.PrinterColour.*;
+import CinemaData.*;
 
 public class PrintMovieScreening {
 
-    private PrinterColour printerColour;
+    private ConsoleColor printerColour;
 
-    public void printMovieScreeningData(MovieScreenig movieScreenig) {
-        System.out.println(" ");
+    public void printMovieScreeningData(MovieScreening movieScreening) {
+
+        System.out.println();
         System.out.println("------------------------------------------------------");
         System.out.println("--------------- Print Movie Screening ---------------");
         System.out.println("* CINEMA *");
-        System.out.println("  " + movieScreenig.getSeatMovieScreening().getMovieSeat().getCinemaRoom().getCinema().getCinemaName());
-        System.out.println("  " + movieScreenig.getSeatMovieScreening().getMovieSeat().getCinemaRoom().getCinema().getCinemaAddress());
 
+        SeatMovieScreening firstSeat =
+                movieScreening.getSeats().values().stream()
+                        .findFirst()
+                        .orElse(null);
+
+        if (firstSeat != null) {
+            CinemaHall hall = firstSeat.getSeat().getCinemaHall();
+            System.out.println("  " + hall.getCinema().getName());
+            System.out.println("  " + hall.getCinema().getAddress());
+        }
+
+        System.out.println();
         System.out.println("* MOVIE *");
-        System.out.println("  " + movieScreenig.getMovieData().getTitle());
-        System.out.println("  " + movieScreenig.getMovieData().getKind() + ", "
-                + movieScreenig.getMovieData().getLanguage());
+        System.out.println("  " + movieScreening.getMovie().getTitle());
+        System.out.println("  " + movieScreening.getMovie().getKind() + ", " + movieScreening.getMovie().getLanguage());
 
-        String movieStartMinute = (movieScreenig.getTime().getMinute() < 10) ? ("0" + movieScreenig.getTime().getMinute()) : Integer.toString(movieScreenig.getTime().getMinute());
-        System.out.println("  " + movieScreenig.getDate().getDayOfWeek() + ", " + movieScreenig.getDate().getDayOfMonth() + " " + movieScreenig.getDate().getMonth()
-                + ", " + movieScreenig.getTime().getHour() + ":" + movieStartMinute);
+        String movieStartMinute = (movieScreening.getTime().getMinute() < 10)
+                        ? "0" + movieScreening.getTime().getMinute()
+                        : String.valueOf(movieScreening.getTime().getMinute());
 
-        System.out.print("      |  SEATS");
-        String currentRow = "";
-        for (SeatMovieScreening sms : movieScreenig.getMovieSeats()) {
+        System.out.println("  "
+                        + movieScreening.getDate().getDayOfWeek() + ", "
+                        + movieScreening.getDate().getDayOfMonth() + " "
+                        + movieScreening.getDate().getMonth() + ", "
+                        + movieScreening.getTime().getHour() + ":"
+                        + movieStartMinute);
 
-            if (!currentRow.equals(sms.getMovieSeat().getRow())) {
-                currentRow = sms.getMovieSeat().getRow();
-                System.out.print("\nROW  " + sms.getMovieSeat().getRow() + "   |");
+        System.out.println();
+        System.out.println("      |  SEATS");
+
+        int currentRow = -1;
+
+        for (SeatMovieScreening sms : movieScreening.getSeats().values()) {
+
+            Seat seat = sms.getSeat();
+
+            if (currentRow != seat.getRowNumber()) {
+                currentRow = seat.getRowNumber();
+                System.out.print("\nROW  " + seat.getRowNumber() + "   |");
             }
 
-            if (sms.getSeatKindOfReserved() == 0) {
-                System.out.print("  "
-                        + getPrinterColour(GREEN)
-                        + sms.getMovieSeat().getColNumber() + sms.getSeatKindOfReserved()
-                        + getPrinterColour(RESET) + "  |  ");
+            String colour;
 
-            } else if (sms.getSeatKindOfReserved() == 1) {
-                System.out.print("  "
-                        + getPrinterColour(YELLOW)
-                        + sms.getSeatKindOfReserved() + sms.getSeatKindOfReserved()
-                        + getPrinterColour(RESET) + "  |  ");
-
-            } else if (sms.getSeatKindOfReserved() == 2) {
-                System.out.print("  "
-                        + getPrinterColour(RED)
-                        + sms.getSeatKindOfReserved() + sms.getSeatKindOfReserved()
-                        + getPrinterColour(RESET) + "  |  ");
-
+            if (sms.getSeatStatus() == SeatStatus.AVAILABLE) {
+                colour = ConsoleColor.GREEN.getCode();
+            } else if (sms.getSeatStatus() == SeatStatus.TEMPORARILY_RESERVED) {
+                colour = ConsoleColor.YELLOW.getCode();
+            } else if (sms.getSeatStatus() == SeatStatus.RESERVED) {
+                colour = ConsoleColor.RED.getCode();
             } else {
-                System.out.print("  "
-                        + sms.getSeatKindOfReserved()
-                        + "  |  ");
+                colour = ConsoleColor.RESET.getCode();
             }
+
+            System.out.print("  " + colour + seat.getSeatNumber() + ConsoleColor.RESET.getCode() + "  |");
         }
 
         System.out.println();
         System.out.println("------------------------------------------------------");
     }
 
-    private String printSeats(Reservation reservation) {
-        String seats = "";
-
-        for (SeatMovieScreening sms : reservation.getSeatsChosenByClient()) {
-            seats += " | row: " + sms.getMovieSeat().getRow() + ", ";
-            seats += "col: " + sms.getMovieSeat().getColNumber() + ", ";
-            seats += "kind: " + sms.getSeatType() + ", ";
-            seats += "price: " + sms.getPrice() + " | ";
-        }
-
-        return seats;
-    }
-
-    public void printClientReservations(Client client) {
-        ArrayList<Reservation> clientReservations = client.getReservations();
-
-        //String columnName = "%-40s%10s%20s%20s%30s%90s\n";
-        String columnName = "%-10s%40s%50s%10s%30s%90s\n";
-        System.out.printf(columnName, "Cinema", "Movie title", "Date", "Hour", "Price", "Seats");
-
-        for (Reservation r : clientReservations) {
-
-            System.out.printf(columnName,
-                    (r.getMovieScreenig().getSeatMovieScreening().getMovieSeat().getCinemaRoom().getCinema().getCinemaName()),
-                    (r.getMovieScreenig().getMovieData().getTitle()),
-                    (r.getMovieScreenig().getDate()),
-                    (r.getMovieScreenig().getTime()),
-                    (r.getValueToPay()),
-                    ("      "+(printSeats(r)))
-            );
-
-        }
-    }
+//    public String printSeats(Reservation reservation) {
+//
+//        StringBuilder seats = new StringBuilder();
+//
+//
+//        for (SeatMovieScreening sms : reservation.getSeatsChosenByClient()) {
+//
+//            Seat seat = sms.getSeat();
+//
+//
+//            seats.append(" | row: ")
+//                    .append(seat.getRowNumber())
+//                    .append(", ");
+//
+//
+//            seats.append("col: ")
+//                    .append(seat.getColNumber())
+//                    .append(", ");
+//
+//
+//            seats.append("type: ")
+//                    .append(seat.getSeatType())
+//                    .append(", ");
+//
+//
+//            seats.append("status: ")
+//                    .append(sms.getSeatStatus())
+//                    .append(", ");
+//
+//
+//            seats.append("price: ")
+//                    .append(sms.getPrice())
+//                    .append(" | ");
+//        }
+//
+//
+//        return seats.toString();
+//    }
 }
