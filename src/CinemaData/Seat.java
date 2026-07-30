@@ -2,33 +2,41 @@ package CinemaData;
 
 public class Seat {
 
-    private String seatNumber;
-    private String rowNumber;
-    private String colNumber;
-    private CinemaRoom cinemaRoom;
+    private CinemaHall cinemaHall;
+    private int seatNumber;
+    private int rowNumber;
+    private int colNumber;
+    private SeatType seatType;
 
-
-    public Seat(String seatNumber, String rowNumber, String colNumber, CinemaRoom cinemaRoom) {
+    public Seat(CinemaHall cinemaHall, int seatNumber, int rowNumber, int colNumber, SeatType seatType) {
+        this.cinemaHall = cinemaHall;
         this.seatNumber = seatNumber;
         this.rowNumber = rowNumber;
         this.colNumber = colNumber;
-        this.cinemaRoom = cinemaRoom;
+        this.seatType = seatType;
     }
 
-    public String getSeatNumber() {
-        return this.seatNumber;
+    public int getSeatNumber() {
+        return seatNumber;
     }
 
-    public String getRow() {
-        return this.rowNumber;
+    public int getRowNumber() {
+        return rowNumber;
     }
 
-    public String getColNumber() {
-        return this.colNumber;
+    public int getColNumber() {
+        return colNumber;
     }
 
-    public CinemaRoom getCinemaRoom() {
-        return this.cinemaRoom;
+    public SeatType getSeatType() {
+        return seatType;
     }
 
+    public CinemaHall getCinemaHall() {
+        return cinemaHall;
+    }
+
+    public void setCinemaHall(CinemaHall cinemaHall) {
+        this.cinemaHall = cinemaHall;
+    }
 }

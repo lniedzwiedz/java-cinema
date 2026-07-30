@@ -1,45 +1,58 @@
 package Printers;
 
+import CinemaData.MovieScreening;
+import CinemaData.Seat;
 import CinemaData.SeatMovieScreening;
-import CompanyData.Client;
 import Documents.Reservation;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 public class PrintReservation {
 
     public void printReservationDetails(Reservation reservation) {
+
         System.out.println("------------------------------------------------------");
-        System.out.println("   RESERVATION DETAILS   ");
-        System.out.println();
-        System.out.println("Cinema: " + reservation.getMovieScreenig().getSeatMovieScreening().getMovieSeat().getCinemaRoom().getCinema().getCinemaName());
-        System.out.println("Address: " + reservation.getMovieScreenig().getSeatMovieScreening().getMovieSeat().getCinemaRoom().getCinema().getCinemaAddress());
-        System.out.println();
-        System.out.println("movie title: " + reservation.getMovieScreenig().getMovieData().getTitle());
-        System.out.println("date: " + reservation.getMovieScreenig().getDate() + ", " + reservation.getMovieScreenig().getTime());
-        System.out.println();
-        System.out.println("room name: " + reservation.getMovieScreenig().getSeatMovieScreening().getMovieSeat());
+        System.out.println("              RESERVATION DETAILS");
+        System.out.println("------------------------------------------------------");
 
-        for (SeatMovieScreening seat : reservation.getSeatsChosenByClient()) {
-            System.out.println("ROW: " + seat.getMovieSeat().getRow() + ", ");
-            System.out.print("seat: " +  seat.getMovieSeat().getSeatNumber() + ", ");
-            System.out.print(seat.getSeatType()+ ", ");
-            System.out.print(seat.getPrice() + ", ");
-            System.out.println();
+        MovieScreening movieScreening = reservation.getMovieScreening();
 
+        SeatMovieScreening firstSeat = reservation.getSeatsChosenByClient()
+                        .values()
+                        .stream()
+                        .findFirst()
+                        .orElse(null);
+
+        if (firstSeat != null) {
+            System.out.println("Cinema: " + firstSeat.getSeat().getCinemaHall().getCinema().getName());
+            System.out.println("Address: " + firstSeat.getSeat().getCinemaHall().getCinema().getAddress());
+        }
+
+        System.out.println();
+        System.out.println("Movie title: " + movieScreening.getMovie().getTitle());
+        System.out.println("Date: " + movieScreening.getDate() + ", " + movieScreening.getTime());
+        System.out.println();
+
+        if (firstSeat != null) {
+            System.out.println("cinema hall name: " + firstSeat.getSeat().getCinemaHall().getName());
+        }
+
+        System.out.println();
+        System.out.println("SEATS:");
+
+        for (SeatMovieScreening seatMovieScreening : reservation.getSeatsChosenByClient().values()) {
+            Seat seat = seatMovieScreening.getSeat();
+            System.out.println("Row: " + seat.getRowNumber());
+            System.out.println("Seat number: " + seat.getSeatNumber());
+            System.out.println("Type: " + seat.getSeatType());
+            System.out.println("Status: " + seatMovieScreening.getSeatStatus());
+            System.out.println("Price: " + seatMovieScreening.getPrice());
             System.out.println();
         }
-        System.out.println("client name: " + reservation.getClient().getClientEmail());
-        System.out.println("email: " + reservation.getClient().getClientFirstName());
-        System.out.println();
-        System.out.println("to pay: " + reservation.getValueToPay());
 
+        System.out.println("Client name: " + reservation.getClient().getClientFirstName());
+        System.out.println("Email: " + reservation.getClient().getClientEmail());
+        System.out.println();
+        System.out.println("To pay: " + reservation.getValueToPay());
         System.out.println("------------------------------------------------------");
         System.out.println();
     }
-
-
-
 }
