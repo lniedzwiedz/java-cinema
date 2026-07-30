@@ -7,8 +7,9 @@ import Documents.Reservation;
 
 public class PrintReservation {
 
-    public void printReservationDetails(Reservation reservation) {
+    public void printReservationData(Reservation reservation) {
 
+        System.out.println();
         System.out.println("------------------------------------------------------");
         System.out.println("              RESERVATION DETAILS");
         System.out.println("------------------------------------------------------");
@@ -16,10 +17,10 @@ public class PrintReservation {
         MovieScreening movieScreening = reservation.getMovieScreening();
 
         SeatMovieScreening firstSeat = reservation.getSeatsChosenByClient()
-                        .values()
-                        .stream()
-                        .findFirst()
-                        .orElse(null);
+                .values()
+                .stream()
+                .findFirst()
+                .orElse(null);
 
         if (firstSeat != null) {
             System.out.println("Cinema: " + firstSeat.getSeat().getCinemaHall().getCinema().getName());
