@@ -1,9 +1,9 @@
-package Printers;
+package printer.reservation;
 
-import CinemaData.Seat;
-import CinemaData.SeatMovieScreening;
-import CompanyData.Client;
-import Documents.Reservation;
+import cinema.seat.Seat;
+import cinema.seat.SeatMovieScreening;
+import company.Client;
+import document.reservation.Reservation;
 
 public class PrintClientReservations {
 
@@ -46,7 +46,6 @@ public class PrintClientReservations {
                     reservation.getSeatsChosenByClient().values()) {
 
                 Seat seat = seatMovieScreening.getSeat();
-
                 seats.append("[R")
                         .append(seat.getRowNumber())
                         .append(" S")

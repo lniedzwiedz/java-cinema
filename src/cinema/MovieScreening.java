@@ -1,6 +1,7 @@
-package CinemaData;
+package cinema;
 
-import CompanyData.Movie;
+import cinema.seat.SeatMovieScreening;
+import company.Movie;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

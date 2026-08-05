@@ -1,9 +1,9 @@
-package Printers;
+package printer.reservation;
 
-import CinemaData.MovieScreening;
-import CinemaData.Seat;
-import CinemaData.SeatMovieScreening;
-import Documents.Reservation;
+import cinema.MovieScreening;
+import cinema.seat.Seat;
+import cinema.seat.SeatMovieScreening;
+import document.reservation.Reservation;
 
 public class PrintReservation {
 

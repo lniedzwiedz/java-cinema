@@ -1,4 +1,4 @@
-package CompanyData;
+package company;
 
 public class Movie {
 

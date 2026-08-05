@@ -1,6 +1,10 @@
-package Printers;
+package printer.moviescreening;
 
-import CinemaData.*;
+import cinema.*;
+import cinema.seat.Seat;
+import cinema.seat.SeatMovieScreening;
+import cinema.seat.SeatStatus;
+import printer.ConsoleColor;
 
 public class PrintMovieScreening {
 

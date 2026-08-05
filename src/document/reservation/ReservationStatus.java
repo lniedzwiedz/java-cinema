@@ -1,4 +1,4 @@
-package Documents;
+package document.reservation;
 
 public enum ReservationStatus {
 
