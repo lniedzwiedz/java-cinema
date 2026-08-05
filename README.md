@@ -4,7 +4,7 @@ A Java-based application for managing cinema operations, including movies, scree
 
 ---
 
-## Key Features
+## Features
 
 ### Movies & Screenings
 
@@ -40,6 +40,6 @@ A Java-based application for managing cinema operations, including movies, scree
 
 ---
 
-## Programming Language
+## Technologies
 
 * Java 🍵
