@@ -6,13 +6,13 @@ import company.Cinema;
 import company.Client;
 import company.Company;
 import company.Movie;
-import document.PurchaseDocument;
+import document.purchase.PurchaseDocument;
 import document.reservation.Reservation;
 import payments.Payment;
-import printer.reservation.PrintClientReservations;
-import printer.moviescreening.PrintMovieScreening;
-import printer.purchasedocument.PrintPurchaseDocument;
-import printer.reservation.PrintReservation;
+import printer.document.reservation.PrintClientReservations;
+import printer.movie.PrintMovieScreening;
+import printer.document.purchase.PrintPurchaseDocument;
+import printer.document.reservation.PrintReservation;
 
 public class Main {
 
