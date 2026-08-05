@@ -1,4 +1,6 @@
-package CinemaData;
+package cinema.seat;
+
+import cinema.CinemaHall;
 
 public class Seat {
 

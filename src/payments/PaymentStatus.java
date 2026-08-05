@@ -1,4 +1,4 @@
-package Documents;
+package payments;
 
 public enum PaymentStatus {
 

@@ -1,8 +1,8 @@
-package Documents;
+package document.reservation;
 
-import CinemaData.MovieScreening;
-import CinemaData.SeatMovieScreening;
-import CompanyData.Client;
+import cinema.MovieScreening;
+import cinema.seat.SeatMovieScreening;
+import company.Client;
 
 import java.util.HashMap;
 import java.util.Map;

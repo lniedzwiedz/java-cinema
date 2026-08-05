@@ -1,14 +1,18 @@
-import CinemaData.*;
-import CompanyData.Cinema;
-import CompanyData.Client;
-import CompanyData.Company;
-import CompanyData.Movie;
-import Documents.PurchaseDocument;
-import Documents.Reservation;
-import Printers.PrintClientReservations;
-import Printers.PrintMovieScreening;
-import Printers.PrintPurchaseDocument;
-import Printers.PrintReservation;
+import cinema.*;
+import cinema.seat.Seat;
+import cinema.seat.SeatMovieScreening;
+import cinema.seat.SeatType;
+import company.Cinema;
+import company.Client;
+import company.Company;
+import company.Movie;
+import document.PurchaseDocument;
+import document.reservation.Reservation;
+import payments.Payment;
+import printer.reservation.PrintClientReservations;
+import printer.moviescreening.PrintMovieScreening;
+import printer.purchasedocument.PrintPurchaseDocument;
+import printer.reservation.PrintReservation;
 
 public class Main {
 
@@ -126,11 +130,13 @@ public class Main {
         printMovieScreening.printMovieScreeningData(c1ms1);
 //        printMovieScreening.printMovieScreeningData(ms2);
 
+        Payment payment1 = new Payment();
+        payment1.payForReservation(res1c1, true);
+
         PurchaseDocument pm1 = new PurchaseDocument(res1c1);
-        pm1.payForReservation(true, true);
 
         PrintPurchaseDocument ppd = new PrintPurchaseDocument();
-        ppd.printPurchaseDocumentData(pm1);
+        ppd.printPurchaseDocumentData(pm1, payment1);
 
         //movie screening - after payment
         System.out.println("---------- AFTER PAYMENT ----------");
@@ -226,11 +232,14 @@ public class Main {
         printMovieScreening.printMovieScreeningData(c2ms1);
         printMovieScreening.printMovieScreeningData(c2ms2);
 
+        Payment payment2 = new Payment();
+        payment2.payForReservation(c2res1, true);
+
         PurchaseDocument c2pm1 = new PurchaseDocument(c2res1);
-        c2pm1.payForReservation(true, true);
+        payment2.payForReservation(c2res1, true);
 
         PrintPurchaseDocument c2ppd = new PrintPurchaseDocument();
-        c2ppd.printPurchaseDocumentData(c2pm1);
+        c2ppd.printPurchaseDocumentData(c2pm1, payment2);
 
         //movie screening - after payment
         System.out.println("---------- AFTER PAYMENT ----------");

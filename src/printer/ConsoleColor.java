@@ -1,4 +1,4 @@
-package Printers;
+package printer;
 
 public enum ConsoleColor {
 

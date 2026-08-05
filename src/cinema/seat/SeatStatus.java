@@ -1,4 +1,4 @@
-package CinemaData;
+package cinema.seat;
 
 public enum SeatStatus {
 

@@ -1,6 +1,7 @@
-package CinemaData;
+package cinema;
 
-import CompanyData.Cinema;
+import cinema.seat.Seat;
+import company.Cinema;
 
 import java.util.HashMap;
 import java.util.Map;

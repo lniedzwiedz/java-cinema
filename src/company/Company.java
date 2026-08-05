@@ -1,6 +1,4 @@
-package CompanyData;
-
-import Documents.Reservation;
+package company;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
-package CompanyData;
+package company;
 
-import Documents.Reservation;
+import document.reservation.Reservation;
 
 import java.util.ArrayList;
 import java.util.List;
