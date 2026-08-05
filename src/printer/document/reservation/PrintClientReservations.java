@@ -1,4 +1,4 @@
-package printer.reservation;
+package printer.document.reservation;
 
 import cinema.seat.Seat;
 import cinema.seat.SeatMovieScreening;

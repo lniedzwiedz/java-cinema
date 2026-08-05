@@ -1,4 +1,4 @@
-package printer.moviescreening;
+package printer.movie;
 
 import cinema.*;
 import cinema.seat.Seat;

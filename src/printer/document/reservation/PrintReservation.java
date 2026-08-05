@@ -1,23 +1,26 @@
-package printer.purchasedocument;
+package printer.document.reservation;
 
 import cinema.MovieScreening;
 import cinema.seat.Seat;
 import cinema.seat.SeatMovieScreening;
-import document.PurchaseDocument;
-import payments.Payment;
+import document.reservation.Reservation;
 
-public class PrintPurchaseDocument {
+public class PrintReservation {
 
-    public void printPurchaseDocumentData(PurchaseDocument purchaseDocument, Payment payment) {
+    public void printReservationData(Reservation reservation) {
 
         System.out.println();
         System.out.println("------------------------------------------------------");
-        System.out.println("            PURCHASE DOCUMENT DETAILS");
+        System.out.println("              RESERVATION DETAILS");
         System.out.println("------------------------------------------------------");
 
-        MovieScreening movieScreening = purchaseDocument.getReservation().getMovieScreening();
+        MovieScreening movieScreening = reservation.getMovieScreening();
 
-        SeatMovieScreening firstSeat = purchaseDocument.getReservation().getSeatsChosenByClient().values().stream().findFirst().orElse(null);
+        SeatMovieScreening firstSeat = reservation.getSeatsChosenByClient()
+                .values()
+                .stream()
+                .findFirst()
+                .orElse(null);
 
         if (firstSeat != null) {
             System.out.println("Cinema: " + firstSeat.getSeat().getCinemaHall().getCinema().getName());
@@ -26,17 +29,17 @@ public class PrintPurchaseDocument {
 
         System.out.println();
         System.out.println("Movie title: " + movieScreening.getMovie().getTitle());
-
         System.out.println("Date: " + movieScreening.getDate() + ", " + movieScreening.getTime());
         System.out.println();
 
-        if (firstSeat != null)
-            System.out.println("Cinema hall: " + firstSeat.getSeat().getCinemaHall().getName());
+        if (firstSeat != null) {
+            System.out.println("cinema hall name: " + firstSeat.getSeat().getCinemaHall().getName());
+        }
 
         System.out.println();
         System.out.println("SEATS:");
 
-        for (SeatMovieScreening seatMovieScreening : purchaseDocument.getReservation().getSeatsChosenByClient().values()) {
+        for (SeatMovieScreening seatMovieScreening : reservation.getSeatsChosenByClient().values()) {
             Seat seat = seatMovieScreening.getSeat();
             System.out.println("Row: " + seat.getRowNumber());
             System.out.println("Seat number: " + seat.getSeatNumber());
@@ -46,12 +49,10 @@ public class PrintPurchaseDocument {
             System.out.println();
         }
 
-        System.out.println("Client name: " + purchaseDocument.getReservation().getClient().getClientFirstName());
-        System.out.println("Email: " + purchaseDocument.getReservation().getClient().getClientEmail());
+        System.out.println("Client name: " + reservation.getClient().getClientFirstName());
+        System.out.println("Email: " + reservation.getClient().getClientEmail());
         System.out.println();
-
-        System.out.println("Payment status: " + payment.getPaymentStatus());
-        System.out.println("Amount to pay: " + purchaseDocument.getReservation().getValueToPay());
+        System.out.println("To pay: " + reservation.getValueToPay());
         System.out.println("------------------------------------------------------");
         System.out.println();
     }

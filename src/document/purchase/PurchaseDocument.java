@@ -1,4 +1,4 @@
-package document;
+package document.purchase;
 
 import document.reservation.Reservation;
 
